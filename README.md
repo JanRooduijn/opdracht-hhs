@@ -221,6 +221,7 @@ In de Explorer (bovenaan de verticale menubalk aan de linkerkant van het scherm)
     
     <details>
     <summary>Oplossing</summary>
+    
     ```ql
     import python
     import semmle.python.dataflow.new.DataFlow
