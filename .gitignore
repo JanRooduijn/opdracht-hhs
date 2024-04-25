@@ -1,2 +1,3 @@
 .vscode/
 codeql-database/
+codeql-custom-queries-python/
