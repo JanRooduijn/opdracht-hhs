@@ -58,7 +58,7 @@ In de Explorer (bovenaan de verticale menubalk aan de linkerkant van het scherm)
     ```
     </details>
 
-1. Veel van de calls zijn attributen (herkenbaar aan het feit dat ze rechts van een punt staan). Net als `Call` is `Attribute` ook een type in Python. Breidt de QL-code uit zodat alleen aangeroepen methoden worden gevonden die attributen zijn.
+1. Veel van de calls zijn attributen (herkenbaar aan het feit dat ze rechts van een punt staan). Net als `Call` is `Attribute` ook een type in CodeQL. Breidt de QL-code uit zodat alleen aangeroepen methoden worden gevonden die attributen zijn.
     <details>
     <summary>Hint</summary>
 
@@ -71,10 +71,10 @@ In de Explorer (bovenaan de verticale menubalk aan de linkerkant van het scherm)
     ```ql
     import python
 
-    from Call c, Attribute att
+    from Call c, Attribute a
 
     where c.getLocation().getFile().getBaseName() = "app.py"
-    and c.getFunc() = att
+    and c.getFunc() = a
     select c
     ```
     </details>
@@ -91,12 +91,12 @@ In de Explorer (bovenaan de verticale menubalk aan de linkerkant van het scherm)
     ```ql
     import python
 
-    from Call c, Attribute att
+    from Call c, Attribute a
 
     where c.getLocation().getFile().getBaseName() = "app.py"
-    and c.getFunc() = att
-    and att.getName() = "execute"
-    select c, att.getName()
+    and c.getFunc() = a
+    and a.getName() = "execute"
+    select c, a.getName()
     ```
     </details>
 
@@ -113,11 +113,11 @@ In de Explorer (bovenaan de verticale menubalk aan de linkerkant van het scherm)
     ```ql
    import python
 
-    from Call c, Attribute att
+    from Call c, Attribute a
     where c.getLocation().getFile().getBaseName() = "app.py"
-    and c.getFunc() = att
-    and att.getName() = "execute"
-    select att.getName(), c.getArg(0)
+    and c.getFunc() = a
+    and a.getName() = "execute"
+    select a.getName(), c.getArg(0)
 
     ```
     </details>
@@ -125,7 +125,7 @@ In de Explorer (bovenaan de verticale menubalk aan de linkerkant van het scherm)
  1. In CodeQL is het mogelijk om _predicates_ te maken om je code beter te structureren. Vorm je vorige query om tot een _predicate_ die alle expressies identificeert die worden uitgevoerd als SQL-query. Je kan het volgende template gebruiken:
     ```ql
     predicate isExecutedAsSQL(Expr arg) {
-      exists(Call c, Attribute att |
+      exists(Call c, Attribute a |
         // TODO vul mij in
       )
     }
@@ -141,10 +141,10 @@ In de Explorer (bovenaan de verticale menubalk aan de linkerkant van het scherm)
     ```ql
     import python
     predicate isExecutedAsSQL(Expr arg) {
-        exists(Call c, Attribute att |
+        exists(Call c, Attribute a |
             c.getLocation().getFile().getBaseName() = "app.py"
-            and c.getFunc() = att
-            and att.getName() = "execute"
+            and c.getFunc() = a
+            and a.getName() = "execute"
             and arg = c.getArg(0)
         )
     }    
@@ -163,10 +163,10 @@ In de Explorer (bovenaan de verticale menubalk aan de linkerkant van het scherm)
 
     ```ql
     predicate isUserInput(Expr arg) {
-        exists(Call c, Attribute att |
+        exists(Call c, Attribute a |
             c.getLocation().getFile().getBaseName() = "app.py"
-            and c.getFunc() = att
-            and att.getName() = "get"
+            and c.getFunc() = a
+            and a.getName() = "get"
             and arg = c
         )
     }
@@ -180,21 +180,11 @@ In de Explorer (bovenaan de verticale menubalk aan de linkerkant van het scherm)
     import semmle.python.dataflow.new.TaintTracking
 
     predicate isExecutedAsSQL(Expr arg) {
-        exists(Call c, Attribute att |
-            c.getLocation().getFile().getBaseName() = "app.py"
-            and c.getFunc() = att
-            and att.getName() = "execute"
-            and arg = c.getArg(0)
-        )
+        // TODO vul mij in
     }
 
     predicate isUserInput(Expr arg) {
-        exists(Call c, Attribute att |
-            c.getLocation().getFile().getBaseName() = "app.py"
-            and c.getFunc() = att
-            and att.getName() = "get"
-            and arg = c
-        )
+        // TODO vul mij in
     }
 
     module SimpleSQLConfig implements DataFlow::ConfigSig {
@@ -221,26 +211,26 @@ In de Explorer (bovenaan de verticale menubalk aan de linkerkant van het scherm)
     
     <details>
     <summary>Oplossing</summary>
-    
+
     ```ql
     import python
     import semmle.python.dataflow.new.DataFlow
     import semmle.python.dataflow.new.TaintTracking
 
     predicate isExecutedAsSQL(Expr arg) {
-        exists(Call c, Attribute att |
+        exists(Call c, Attribute a |
             c.getLocation().getFile().getBaseName() = "app.py"
-            and c.getFunc() = att
-            and att.getName() = "execute"
+            and c.getFunc() = a
+            and a.getName() = "execute"
             and arg = c.getArg(0)
         )
     }
 
     predicate isUserInput(Expr arg) {
-        exists(Call c, Attribute att |
+        exists(Call c, Attribute a |
             c.getLocation().getFile().getBaseName() = "app.py"
-            and c.getFunc() = att
-            and att.getName() = "get"
+            and c.getFunc() = a
+            and a.getName() = "get"
             and arg = c
         )
     }
