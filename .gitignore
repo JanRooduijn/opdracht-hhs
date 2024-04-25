@@ -1,3 +1,4 @@
 .vscode/
 codeql-database/
 codeql-custom-queries-python/
+.DS_Store

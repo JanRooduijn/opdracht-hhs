@@ -45,8 +45,8 @@ In de Explorer (bovenaan de verticale menubalk aan de linkerkant van het scherm)
     - Om je te beperken tot bepaalde calls kan je de `where` clausule gebruiken.
 
     </details>
-    <summary>Oplossing</summary>
     <details>
+    <summary>Oplossing</summary>
 
 
     ```ql
@@ -61,11 +61,11 @@ In de Explorer (bovenaan de verticale menubalk aan de linkerkant van het scherm)
 1. Veel van de calls zijn attributen (herkenbaar aan het feit dat ze rechts van een punt staan). Net als `Call` is `Attribute` ook een type in Python. Breidt de QL-code uit zodat alleen aangeroepen methoden worden gevonden die attributen zijn.
     <details>
     <summary>Hint</summary>
-    <details>
 
     - Het is niet de call `c` zelf die een attribuut is, maar de functie die door deze call wordt aangeroepen. Die functie kan je vinden door middel van `c.getFunc()`.
 
     </details>
+    <details>
     <summary>Oplossing</summary>
 
     ```ql
@@ -82,11 +82,10 @@ In de Explorer (bovenaan de verticale menubalk aan de linkerkant van het scherm)
 1. Beperk de query verder zodat alleen de uitgevoerde methodes worden gevonden waar het attribuut `execute` is. 
     <details>
     <summary>Hint</summary>
-    <details>
-
     - gebruik de methode `getName()` van de `Attribute` class.
 
     </details>
+    <details>
     <summary>Oplossing</summary>
 
     ```ql
@@ -105,11 +104,9 @@ In de Explorer (bovenaan de verticale menubalk aan de linkerkant van het scherm)
 
     <details>
     <summary>Hint</summary>
-    <details>
-
     - de methode `Call.getArg(int i)` geeft het argument met index `i`. 
-
     </details>
+    <details>
     <summary>Oplossing</summary>
 
     ```ql
@@ -150,6 +147,7 @@ In de Explorer (bovenaan de verticale menubalk aan de linkerkant van het scherm)
         )
     }    
     ```
+    </details>
 
 1. Maak een tweede `predicate` dat alle expressies selecteert die user input dragen via de methode `request.json.get`
 
@@ -170,6 +168,7 @@ In de Explorer (bovenaan de verticale menubalk aan de linkerkant van het scherm)
         )
     }
     ```
+    </details>
 
 1. Vul, met behulp van de tot nu toe ontwikkelde code, het volgende template in om een volledige DataFlow query te krijgen. 
     ```ql
@@ -196,13 +195,13 @@ In de Explorer (bovenaan de verticale menubalk aan de linkerkant van het scherm)
     }
 
     module SimpleSQLConfig implements DataFlow::ConfigSig {
-    predicate isSource(DataFlow::Node source) {
-        isUserInput(source.asExpr())
-    }
+        predicate isSource(DataFlow::Node source) {
+            // TODO
+        }
 
-    predicate isSink(DataFlow::Node sink) {
-        isExecutedAsSQL(sink.asExpr())
-    }
+        predicate isSink(DataFlow::Node sink) {
+            // TODO
+        }
     }
 
     module SimpleSQLFlow = TaintTracking::Global<SimpleSQLConfig>;
@@ -242,13 +241,13 @@ In de Explorer (bovenaan de verticale menubalk aan de linkerkant van het scherm)
     }
 
     module SimpleSQLConfig implements DataFlow::ConfigSig {
-    predicate isSource(DataFlow::Node source) {
-        isUserInput(source.asExpr())
-    }
+        predicate isSource(DataFlow::Node source) {
+            isUserInput(source.asExpr())
+        }
 
-    predicate isSink(DataFlow::Node sink) {
-        isExecutedAsSQL(sink.asExpr())
-    }
+        predicate isSink(DataFlow::Node sink) {
+            isExecutedAsSQL(sink.asExpr())
+        }
     }
 
     module SimpleSQLFlow = TaintTracking::Global<SimpleSQLConfig>;
