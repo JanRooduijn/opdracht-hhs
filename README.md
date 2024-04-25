@@ -82,8 +82,8 @@ In de Explorer (bovenaan de verticale menubalk aan de linkerkant van het scherm)
 1. Beperk de query verder zodat alleen de uitgevoerde methodes worden gevonden waar het attribuut `execute` is. 
     <details>
     <summary>Hint</summary>
-    - gebruik de methode `getName()` van de `Attribute` class.
 
+    - Gebruik de methode `getName()` van de `Attribute` class.
     </details>
     <details>
     <summary>Oplossing</summary>
@@ -104,7 +104,8 @@ In de Explorer (bovenaan de verticale menubalk aan de linkerkant van het scherm)
 
     <details>
     <summary>Hint</summary>
-    - de methode `Call.getArg(int i)` geeft het argument met index `i`. 
+
+    - De methode `Call.getArg(int i)` geeft het argument met index `i`. 
     </details>
     <details>
     <summary>Oplossing</summary>
@@ -131,7 +132,8 @@ In de Explorer (bovenaan de verticale menubalk aan de linkerkant van het scherm)
     ```
     <details>
     <summary>Hint</summary>
-     - Kopieer alles onder `where` in de vorige query
+
+    - Kopieer alles onder `where` in de vorige query
     </details>
     <details>
     <summary>Oplossing</summary>
@@ -153,7 +155,8 @@ In de Explorer (bovenaan de verticale menubalk aan de linkerkant van het scherm)
 
     <details>
     <summary>Hint</summary>
-     - Gebruik de vorige query, maar selecteer nu de hele call in plaats van slechts het eerste argument.
+
+    - Gebruik de vorige query, maar selecteer nu de hele call in plaats van slechts het eerste argument.
     </details>
     <details>
     <summary>Oplossing</summary>
@@ -196,11 +199,11 @@ In de Explorer (bovenaan de verticale menubalk aan de linkerkant van het scherm)
 
     module SimpleSQLConfig implements DataFlow::ConfigSig {
         predicate isSource(DataFlow::Node source) {
-            // TODO
+            // TODO vul mij in 
         }
 
         predicate isSink(DataFlow::Node sink) {
-            // TODO
+            // TODO vul mij in
         }
     }
 
@@ -212,7 +215,8 @@ In de Explorer (bovenaan de verticale menubalk aan de linkerkant van het scherm)
     ```
     <details>
     <summary>Hint</summary>
-     - Gebruik `Node.asExpr()`
+
+    - Gebruik `Node.asExpr()`
     </details>
     
     <details>
