@@ -253,6 +253,20 @@ In de Explorer (bovenaan de verticale menubalk aan de linkerkant van het scherm)
     ```
     </details>
 
+1. Je bent pas net begonnen, dus de query die je hebt geschreven is nog niet perfect. Welke _false negatives_ en welke _false positives_ zou jouw query kunnen geven?
+    <details>
+    <summary>Oplossing</summary>
+
+    - Je vindt nu alle `execute` statements, in plaats van slechts diegene die gedefinieerd worden in `django.db`.
+    - Vergelijkbaar: je vindt nu alle `get` statements, in plaats van alleen de `json.get` statements die gedefinieerd worden in `request`.
+    - Je neemt in de user input alleen de informatie mee die komt van `get` statements, en niet de parameters van die volgen uit `app.route`.
+    - ...
+    </details>
+
+1. Draai tot slot de officiële query van CodeQL om SQL-injecties te herknnen in python code: https://github.com/github/codeql/blob/main/python/ql/src/Security/CWE-089/SqlInjection.ql. Vergelijk de uitkomst met de SQL-injectie kwetsbaarheden die jij het gevonden bij de eerste vraag. 
+
+
+
 ## Bronnen
 Deze opdracht is gebaseerd op eerdere tutorials van het CodeQL team van Github. Zie bijvoorbeeld:
 - https://github.com/GitHubSecurityLab/codeql-zero-to-hero/tree/main
